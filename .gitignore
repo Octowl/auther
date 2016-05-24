@@ -34,3 +34,4 @@ node_modules
 
 # Bower dependency directory
 bower_components
+.idea
