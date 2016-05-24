@@ -6,7 +6,6 @@ app.directive("signIn", function($log, $state, Auth){
         templateUrl: "browser/components/signin/signin.html",
         scope: {
             type: "@"
-            //submit: "&"
         },
         link: function (scope){
             console.log(scope.user);
@@ -23,6 +22,5 @@ app.directive("signIn", function($log, $state, Auth){
                     .catch($log.err);
             };
         }
-
     };
 })
