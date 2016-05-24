@@ -18,4 +18,11 @@ router.post('/login', function (req, res, next) {
         .catch(next);
 });
 
+router.get('/logout', function (req, res, next) {
+    req.session.destroy(function(err){
+        if (err) next(err);
+        else res.sendStatus(204);
+    });
+});
+
 module.exports = router;

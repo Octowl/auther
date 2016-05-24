@@ -9,7 +9,11 @@ app.factory('Auth', function($http, User){
     };
 
     Auth.login = function(user){
-        return $http.post("/login", user)
+        return $http.post("/login", user);
+    };
+
+    Auth.logout = function(){
+        return $http.get("/logout");
     };
 
     return Auth;
