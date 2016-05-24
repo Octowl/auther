@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var User = require("../../api/users/user.model");
 
+
+
 router.post('/login', function(req, res, next ){
     User.findOne({
         where: req.body
@@ -8,6 +10,9 @@ router.post('/login', function(req, res, next ){
         .then(function(user){
         if(!user) res.sendStatus(401);
         else {
+            var hour = 3600000;
+            req.session.cookie.maxAge = hour;
+
             req.session.userId = user.id;
             res.sendStatus(204);
         }
