@@ -3,20 +3,21 @@
 var app = require('express')();
 var path = require('path');
 
+app.use(require('./sessions.middleware'));
+
 app.use(require('./logging.middleware'));
 
 app.use(require('./request-state.middleware'));
 
 app.use(require('./statics.middleware'));
 
-app.use(require('./sessions.middleware'));
-
 app.use('/api', function (req, res, next) {
   if (!req.session.counter) req.session.counter = 0;
   console.log('counter', ++req.session.counter);
-  console.log('session', req.session);
   next();
 });
+
+app.use(require('./auth/auth.router'));
 
 app.use('/api', require('../api/api.router'));
 
