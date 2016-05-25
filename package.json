@@ -15,11 +15,12 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "express": "^4.13.3",
-    "express-session": "^1.13.0",
+    "express-session": "^1.11.3",
     "morgan": "^1.6.1",
-    "passport": "^0.3.2",
-    "passport-google-auth": "^1.0.1",
-    "passport-google-oauth": "^1.0.0",
+    "passport": "^0.3.0",
+    "passport-github": "^1.0.0",
+    "passport-google-oauth": "^0.2.0",
+    "passport-twitter": "^1.0.3",
     "pg": "^4.5.5",
     "sequelize": "^3.23.1"
   },

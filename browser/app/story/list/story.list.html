@@ -23,7 +23,7 @@
   </div>
   <br>
   <ul class="list-group">
-    <li class="list-group-item story-item">
+    <li ng-show="$root.isAdmin()" class="list-group-item story-item">
       <ul class="list-inline">
         <li>
           <span
@@ -63,7 +63,7 @@
           <a ui-sref="user({id: story.author_id})">{{ story.author.name }}</a>
         </li>
       </ul>
-      <button class="btn btn-default btn-xs" ng-click="removeStory(story)">
+      <button ng-show="$root.isMe(story.author) || $root.isAdmin()" class="btn btn-default btn-xs" ng-click="removeStory(story)">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
     </li>

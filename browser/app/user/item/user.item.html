@@ -22,7 +22,7 @@
       </div>
       <span
         ng-if="!isForm"
-        contenteditable
+        contenteditable="{{ $root.isMe(user) || $root.isAdmin() }}"
         placeholder="Jean Doe"
         ng-model="user.name"
         ng-model-options="{debounce: 500}"
@@ -30,9 +30,9 @@
       </span>
       <span
         ng-if="!isForm"
-        class="glyphicon glyphicon-certificate toggleable"
-        ng-class="{transparent: !user.isAdmin}"
-        ng-click="user.isAdmin = !user.isAdmin"
+        class="glyphicon glyphicon-certificate"
+        ng-class="{toggleable: $root.isAdmin(), transparent: !user.isAdmin}"
+        ng-click="$root.isAdmin() && (user.isAdmin = !user.isAdmin)"
         eat-click>  
       </span>
     </h4>
@@ -46,7 +46,7 @@
       </div>
       <span
         ng-if="!isForm"
-        contenteditable
+        contenteditable="{{ $root.isMe(user) || $root.isAdmin() }}"
         ng-model="user.email"
         ng-model-options="{debounce: 500}"
         eat-click>
@@ -62,7 +62,7 @@
       </div>
       <span
         ng-if="!isForm"
-        contenteditable
+        contenteditable="{{ $root.isMe(user) || $root.isAdmin() }}"
         placeholder="(555) 555-5555"
         ng-model="user.phone"
         ng-model-options="{debounce: 500}"
@@ -70,7 +70,7 @@
       </span>
     </h5>
   </div>
-  <div class="media-right media-middle">
+  <div ng-show="$root.isMe(user) || $root.isAdmin()" class="media-right media-middle">
     <button
       ng-if="!isForm"
       class="btn btn-default"

@@ -7,11 +7,11 @@
       glyphicon="search">
     </user-item>
     <user-item
+      ng-show="$root.isAdmin()"
       is-form
       model="userAdd"
       class="list-group-item min-content"
       glyphicon="plus"
-      ng-show="getCurrentUser().isAdmin"
       icon-click="addUser()">
     </user-item>
   </div>

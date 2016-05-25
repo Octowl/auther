@@ -27,11 +27,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   User.create(req.body)
   .then(function (user) {
-      res.redirect(307, '/auth/login');
-    //   var hour = 3600000;
-    //   req.session.cookie.maxAge = hour;
-    //   req.session.userId = user.id;
-    // res.status(201).json(user);
+    res.status(201).json(user);
   })
   .catch(next);
 });
@@ -59,6 +55,5 @@ router.delete('/:id', function (req, res, next) {
   })
   .catch(next);
 });
-
 
 module.exports = router;

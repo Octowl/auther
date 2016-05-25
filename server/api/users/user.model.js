@@ -1,4 +1,3 @@
-
 'use strict';
 
 var Sequelize = require('sequelize');
@@ -21,11 +20,13 @@ var User = db.define('user', {
     }
   },
   password: Sequelize.STRING,
-  googleId: Sequelize.STRING,
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-  }
+  },
+  googleId: Sequelize.STRING,
+  twitterId: Sequelize.STRING,
+  githubId: Sequelize.STRING
 });
 
 module.exports = User;
