@@ -2,7 +2,7 @@
 
 var app = require('express')();
 var path = require('path');
-var passpot = require('passport');
+var passport = require('passport');
 
 app.use(require('./sessions.middleware'));
 
@@ -21,7 +21,7 @@ app.use('/api', function (req, res, next) {
   next();
 });
 
-app.use(require('./auth/auth.router'));
+app.use('/auth', require('./auth/auth.router'));
 
 app.use('/api', require('../api/api.router'));
 

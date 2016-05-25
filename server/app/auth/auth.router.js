@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var User = require("../../api/users/user.model");
+var passport = require("./strategies");
 
 router.post('/login', function (req, res, next) {
     User.findOne({
@@ -23,5 +24,16 @@ router.get('/logout', function (req, res, next) {
         else res.sendStatus(204);
     });
 });
+
+// Google authentication and login
+router.get('/google', passport.authenticate('google', { scope : 'email' }));
+
+// handle the callback after Google has authenticated the user
+router.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect : '/', // or wherever
+        failureRedirect : '/' // or wherever
+    })
+);
 
 module.exports = router;

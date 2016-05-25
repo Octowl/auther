@@ -13,7 +13,7 @@ app.factory('Auth', function ($http, User) {
     };
 
     Auth.login = function (user) {
-        return $http.post("/login", user)
+        return $http.post("/auth/login", user)
             .then(function (res) {
                 var foundUser = new User(res.data);
                 currentUser = foundUser;
@@ -21,7 +21,7 @@ app.factory('Auth', function ($http, User) {
     };
 
     Auth.logout = function () {
-        return $http.get("/logout")
+        return $http.get("/auth/logout")
         .then(function(){
             currentUser = null;
         });
