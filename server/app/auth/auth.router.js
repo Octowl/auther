@@ -9,10 +9,13 @@ router.post('/login', function (req, res, next) {
         .then(function (user) {
             if (!user) res.sendStatus(401);
             else {
-                var hour = 3600000;
-                req.session.cookie.maxAge = hour;
-                req.session.userId = user.id;
-                res.status(201).send(user);
+                console.log("LOGIN", req.login);
+                req.login(user, function(err) {
+                    if(err) return next(err);
+                    var hour = 3600000;
+                    req.session.cookie.maxAge = hour;
+                    return res.status(201).send(user);
+                })
             }
         })
         .catch(next);
@@ -31,7 +34,7 @@ router.get('/google', passport.authenticate('google', { scope : 'email' }));
 // handle the callback after Google has authenticated the user
 router.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect : '/', // or wherever
+        successRedirect : '/stories', // or wherever
         failureRedirect : '/' // or wherever
     })
 );
