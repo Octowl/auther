@@ -1,35 +1,43 @@
 'use strict';
 
-app.factory('Auth', function ($http, User) {
-    var Auth = {};
-    var currentUser = null;
+app.factory('Auth', function ($http, $log, User) {
+    var auth = {};
+    var currentuser = null;
 
-    Auth.signup = function (user) {
-        var user = new User(user);
+    auth.signup = function (user) {
+        var user = new user(user);
         return user.save()
-            .then(function (foundUser) {
-                currentUser = foundUser;
+            .then(function (founduser) {
+                currentuser = founduser;
             });
     };
 
-    Auth.login = function (user) {
+    auth.login = function (user) {
         return $http.post("/auth/login", user)
             .then(function (res) {
-                var foundUser = new User(res.data);
-                currentUser = foundUser;
+                var founduser = new user(res.data);
+                currentuser = founduser;
             });
     };
 
-    Auth.logout = function () {
+    auth.logout = function () {
         return $http.get("/auth/logout")
         .then(function(){
-            currentUser = null;
+            currentuser = null;
         });
     };
 
-    Auth.getCurrentUser = function() {
-        return currentUser;
+    auth.getcurrentuser = function() {
+        return currentuser;
     }
 
-    return Auth;
+    auth.fetchcurrentuser = function(){
+        return $http.get("/auth/me").then(function(res){
+            var founduser = new user(res.data);
+            currentuser = founduser;
+        })
+            .catch($log.err);
+    }
+
+    return auth;
 })

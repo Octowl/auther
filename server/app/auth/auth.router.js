@@ -28,6 +28,18 @@ router.get('/logout', function (req, res, next) {
     });
 });
 
+router.get('/me', function(req, res, next){
+    if (!req.session.passport){
+        res.sendStatus(404);
+    }else{
+        User.findById(req.session.passport.user)
+            .then(function(user){
+                res.send(user);
+            })
+            .catch(next);
+    }
+})
+
 // Google authentication and login
 router.get('/google', passport.authenticate('google', { scope : 'email' }));
 

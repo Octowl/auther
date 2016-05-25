@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('userItem', function () {
+app.directive('userItem', function (Auth) {
   return {
     restrict: 'E',
     templateUrl: '/browser/app/user/item/user.item.html',
@@ -11,6 +11,7 @@ app.directive('userItem', function () {
       afterRemove: '&'
     },
     link: function (scope, elem, attrs) {
+      angular.extend(scope, Auth);
       if (attrs.hasOwnProperty('isForm')) scope.isForm = true;
       if (attrs.hasOwnProperty('iconClick')) scope.hasIconClick = true;
       if (!scope.isForm) {
