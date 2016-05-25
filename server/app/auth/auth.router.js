@@ -10,9 +10,8 @@ router.post('/login', function (req, res, next) {
             else {
                 var hour = 3600000;
                 req.session.cookie.maxAge = hour;
-
                 req.session.userId = user.id;
-                res.sendStatus(204);
+                res.status(201).send(user);
             }
         })
         .catch(next);

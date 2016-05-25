@@ -1,6 +1,7 @@
 'use strict';
 
-app.controller('UserListCtrl', function ($scope, users, User) {
+app.controller('UserListCtrl', function ($scope, users, User, Auth) {
+    angular.extend($scope, Auth);
   $scope.users = users;
   $scope.addUser = function () {
     $scope.userAdd.save()
@@ -9,7 +10,7 @@ app.controller('UserListCtrl', function ($scope, users, User) {
       $scope.users.unshift(user);
     });
   };
-  
+
   $scope.userSearch = new User();
 
   $scope.userAdd = new User();
