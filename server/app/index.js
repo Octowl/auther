@@ -2,8 +2,12 @@
 
 var app = require('express')();
 var path = require('path');
+var passpot = require('passport');
 
 app.use(require('./sessions.middleware'));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require('./logging.middleware'));
 

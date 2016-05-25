@@ -1,3 +1,4 @@
+
 'use strict';
 
 var Sequelize = require('sequelize');
@@ -20,6 +21,7 @@ var User = db.define('user', {
     }
   },
   password: Sequelize.STRING,
+  googleId: Sequelize.STRING,
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
